@@ -1,7 +1,7 @@
 import scrapy
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
-from news_scrapper.items import companyItem
+from info_scrapper.items import companyItem
 class GithubSpider(scrapy.Spider):
     name = "github"
     allowed_domains = ["github.com"]
