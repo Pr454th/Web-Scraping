@@ -11,7 +11,7 @@ class GithubSpider(scrapy.Spider):
         "FEED_URI": "companies.json",
         "FEED_FORMAT": "json",
     }
-
+    #hello world
     def parse(self, response):
         company = companyItem()
         companies= response.xpath(
@@ -24,7 +24,6 @@ class GithubSpider(scrapy.Spider):
             for row in table.xpath(".//tbody//tr"):
                 questionSet=[]
                 for col in row.xpath(".//td//a[@rel='nofollow']"):
-                    # print(col.xpath(".//@href").get())
                     questionSet.append(col.xpath(".//@href").get())
                     questionSet.append(col.xpath(".//text()").get())
                 company['questions'].append(questionSet)
