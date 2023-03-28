@@ -19,3 +19,4 @@ class playerItem(scrapy.Item):
     bowlingStyle=scrapy.Field()
     playingRole=scrapy.Field()
     image=scrapy.Field()
+    team=scrapy.Field()

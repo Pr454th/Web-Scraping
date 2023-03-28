@@ -1,30 +1,21 @@
 import scrapy
 from info_scrapper.items import playerItem
 
+import requests
+from bs4 import BeautifulSoup
 class PlayersSpider(scrapy.Spider):
     name = "players"
     allowed_domains = ["players.com"]
-    start_urls = ["https://www.espncricinfo.com/cricketers/quinton-de-kock-379143",
-    "https://www.espncricinfo.com/cricketers/johnson-charles-333066",
-    "https://www.espncricinfo.com/cricketers/kyle-abbott-297583",
-    "https://www.espncricinfo.com/cricketers/matthew-breetzke-595267",
-    "https://www.espncricinfo.com/cricketers/junior-dala-545467",
-    "https://www.espncricinfo.com/cricketers/akila-dananjaya-574178",
-    "https://www.espncricinfo.com/cricketers/simon-harmer-432960",
-    "https://www.espncricinfo.com/cricketers/jason-holder-391485",
-    "https://www.espncricinfo.com/cricketers/christiaan-jonker-222320",
-    "https://www.espncricinfo.com/cricketers/heinrich-klaasen-436757",
-    "https://www.espncricinfo.com/cricketers/dilshan-madushanka-793007",
-    "https://www.espncricinfo.com/cricketers/keshav-maharaj-267724",
-    "https://www.espncricinfo.com/cricketers/kyle-mayers-348056",
-    "https://www.espncricinfo.com/cricketers/wiaan-mulder-698189",
-    "https://www.espncricinfo.com/cricketers/keemo-paul-677081",
-    "https://www.espncricinfo.com/cricketers/dwaine-pretorius-327830",
-    "https://www.espncricinfo.com/cricketers/prenelan-subrayen-437438",
-    "https://www.espncricinfo.com/cricketers/reece-topley-461632",
-    "https://www.espncricinfo.com/cricketers/hardus-viljoen-375126"]
+    url="https://www.espncricinfo.com/series/sa20-2022-23-1335268/paarl-royals-squad-1335771/series-squads"
+    res=requests.get(url)
+    soup=BeautifulSoup(res.content, 'html5lib')
+    cricketers=[]
+    for a in soup.find_all('a', href=True,class_='ds-inline-flex ds-items-start ds-leading-none'):
+        if "/cricketers" in a['href']:
+            cricketers.append("https://www.espncricinfo.com"+a['href'])
+    start_urls =cricketers
     custom_settings={
-        "FEED_URI":"Durban's Super Giants squad.json",
+        "FEED_URI":"test.json",
         "FEED_FORMAT":"json",
     }
     def parse(self, response):
