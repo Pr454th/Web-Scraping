@@ -20,3 +20,6 @@ class playerItem(scrapy.Item):
     playingRole=scrapy.Field()
     image=scrapy.Field()
     team=scrapy.Field()
+
+class formItem(scrapy.Item):
+    text=scrapy.Field()

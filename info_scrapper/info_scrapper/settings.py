@@ -1,3 +1,7 @@
+SELENIUM_DRIVER_NAME = 'firefox'
+SELENIUM_DRIVER_EXECUTABLE_PATH = '/home/prasath/Desktop/Projects/Web-Scraping/info_scrapper/info_scrapper/spiders/Drivers/geckodriver'
+SELENIUM_DRIVER_ARGUMENTS=['-headless']
+# SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox
 # Scrapy settings for info_scrapper project
 #
 # For simplicity, this file contains only settings considered important or
@@ -50,9 +54,13 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+DOWNLOADER_MIDDLEWARES = {
+   'scrapy_selenium.SeleniumMiddleware': 800
+}
+
+# DOWNLOADER_MIDDLEWARES = {
 #    "info_scrapper.middlewares.NewsScrapperDownloaderMiddleware": 543,
-#}
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
