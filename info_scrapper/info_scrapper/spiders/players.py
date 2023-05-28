@@ -27,7 +27,7 @@ class PlayersSpider(scrapy.Spider):
         player['playingRole']=""
         player['image']=""
         fields=response.xpath("//p[@class='ds-text-tight-m ds-font-regular ds-uppercase ds-text-typo-mid3']//text()").getall()
-        details=response.xpath("//span[@class='ds-text-title-s ds-font-bold ds-text-typo']//h5//text()").getall()
+        details=response.xpath("//span[@class='ds-text-title-s ds-font-bold ds-text-typo']//p//text()").getall()
         player['nationalteam']=response.xpath("//span[@class='ds-text-comfortable-s']//text()").get()
         player['image']=response.xpath("//meta[@property='og:image']/@content").get()
         print(details)
